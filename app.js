@@ -6,21 +6,23 @@ score1Elm.textContent = 0;
 const diceElm = document.querySelector('.dice');
 diceElm.classList.add('hidden');
 const btnRoll = document.querySelector('.btn--roll');
-btnRoll.addEventListener('click', clickRollDice);
-
-let activePlayer = 0;
-
-let currentScore = 0;
-const currentScoreElm0 = document.getElementById('current--0');
-
+const btnHold = document.querySelector('.btn--hold');
+const playerScoresElms = document.querySelectorAll('.score');
+const scores = [0, 0];
+const currentScoreElms = document.querySelectorAll('.current-score');
 // const currentScoreElms = [];
 // for (let i = 0; i <2; i++){
 //     currentScoreElms.push(document.getElementById(`current--${i}`));
 // }
-
-const currentScoreElms = document.querySelectorAll('.current-score');
-
 const sectionPlayers = document.querySelectorAll('.player');
+const btnNew = document.querySelector('.btn--new');
+
+btnRoll.addEventListener('click', clickRollDice);
+btnHold.addEventListener('click', clickHold);
+btnNew.addEventListener('click', newGame);
+
+let activePlayer = 0;
+let currentScore = 0;
 
 function clickRollDice() {
     diceElm.classList.remove('hidden');
@@ -35,17 +37,9 @@ function clickRollDice() {
         sectionPlayers[1].classList.toggle('player--active');
     }else{
         currentScore += diceNumber;
-        // currentScoreElm0.textContent = currentScore;
-        currentScoreElms[activePlayer].textContent = currentScore;
-        
+        currentScoreElms[activePlayer].textContent = currentScore; 
     }
 }
-
-const btnHold = document.querySelector('.btn--hold');
-const playerScoresElms = document.querySelectorAll('.score');
-const scores = [0, 0];
-
-btnHold.addEventListener('click', clickHold);
 
 function clickHold(){
     scores[activePlayer] += currentScore;
@@ -63,9 +57,6 @@ function clickHold(){
         sectionPlayers[1].classList.toggle('player--active');
     }
 }
-
-const btnNew = document.querySelector('.btn--new');
-btnNew.addEventListener('click', newGame);
 
 function newGame() {
     scores[0] = 0;
