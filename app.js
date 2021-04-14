@@ -75,7 +75,7 @@ function newGame() {
     currentScoreElms[0].textContent = 0;
     currentScoreElms[1].textContent = 0;
     btnHold.addEventListener('click', clickHold);
-    btnHold.addEventListener('click', clickRollDice);
+    btnRoll.addEventListener('click', clickRollDice);
     sectionPlayers[0].classList.remove('player--winner');
     sectionPlayers[1].classList.remove('player--winner');
     sectionPlayers[0].classList.add('player--active');
